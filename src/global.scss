@@ -24,3 +24,21 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+
+.error-padding {
+  padding-top: 0.5rem;
+}
+
+.header-primary{
+  margin: 0;
+  color: var(--ion-color-primary-contrast);
+}
+
+.bg-tint{
+  background: var(--ion-color-primary-tint);
+}
+.full-width{
+  width: 100%;
+}
+

@@ -1,0 +1,42 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button (click)="onBack()" default-href="#"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{category.name}}</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+
+  <ion-card *ngFor="let item of productTypes" [routerLink]="[ '/home/product', item.id]">
+    <ion-card-content>
+      <ion-row>
+        <ion-col size="4"> 
+          <img  [src]="category.thumbnail" (error)="category.thumbnail = 'https://ionicframework.com/docs/img/demos/card-media.png'" />
+        </ion-col>
+        <ion-col size="8">
+          <ion-row>
+            <strong>{{item.name}}</strong>
+          </ion-row>          
+          <ion-row>
+            <div>
+              <ion-icon color="primary" *ngFor="let item of list;let i = index" [name]="condition <= i? 'star-outline' :'star' "
+             >
+              </ion-icon>
+            </div>
+          </ion-row>
+          <ion-row>
+                <b>{{item.salePrice | currency }}</b> <span class="ion-margin-start">M.R.P <span class="text-line-through">{{item.price}}</span> </span>
+          </ion-row>
+
+          <ion-row>
+            <ion-button class="ion-margin-top" color="primary">Add to Cart</ion-button>
+          </ion-row>
+
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+
+

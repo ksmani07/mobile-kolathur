@@ -1,0 +1,155 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+
+<ion-content [fullscreen]="true">
+  <h1 class="ion-padding ion-no-margin">Welcome</h1>
+ 
+  <ion-accordion-group #accordionGroup class="ion-padding" [value]="['signin']">
+    <form fxLayout="column" fxLayoutGap="1rem" class="sign-form" [formGroup]="registerForm" (ngSubmit)="registerSubmit()">
+    <ion-accordion toggleIcon="caret-down-circle-outline" toggleIconSlot="start" value="signup">
+      <ion-item slot="header">
+        <ion-label> <strong>Create Account</strong> New to Shopping</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+
+        <ion-list>
+          <ion-item>
+            <ion-input formControlName="username" labelPlacement="floating">
+              <div slot="label">User Name<ion-text color="danger">*</ion-text></div>
+            </ion-input>
+          </ion-item>
+          <div *ngIf="(registerFormControl?.username?.touched ||  isRegisterSubmit )&& registerFormControl?.username?.invalid">
+            <div class="ion-padding error-padding" *ngIf="registerFormControl?.username?.errors?.required">
+              <ion-text color="danger">Username is required.</ion-text>
+            </div>
+            <div class="ion-padding error-padding" *ngIf="registerFormControl?.username?.errors?.minlength">
+              <ion-text color="danger">Minimum 5 characters required.</ion-text>
+            </div>
+          </div>
+          <ion-item>
+            <ion-input formControlName="mobile" type="number" labelPlacement="floating">
+              <div slot="label">Mobile <ion-text color="danger">*</ion-text></div>
+            </ion-input>
+          </ion-item>
+
+          <div *ngIf="(registerFormControl?.mobile?.touched ||  isRegisterSubmit )&& registerFormControl?.mobile?.invalid">
+            <div class="ion-padding error-padding" *ngIf="registerFormControl?.mobile?.errors?.required">
+              <ion-text color="danger">Mobile is required.</ion-text>
+            </div>
+          </div>
+
+          <ion-item>
+            <ion-input formControlName="password" type="password" labelPlacement="floating">
+              <div slot="label">Password <ion-text color="danger">*</ion-text></div>
+            </ion-input>
+          </ion-item>
+
+          <div *ngIf="(registerFormControl?.password?.touched ||  isRegisterSubmit )&& registerFormControl?.password?.invalid">
+            <div class="ion-padding error-padding" *ngIf="registerFormControl?.password?.errors?.required">
+              <ion-text color="danger">Password is required.</ion-text>
+            </div>
+            <div class="ion-padding error-padding" *ngIf="registerFormControl?.password?.errors?.minlength">
+              <ion-text color="danger">Minimum 5 characters required.</ion-text>
+            </div>
+          </div>
+
+          <ion-item lines="none">
+            <ion-input formControlName="email"  helperText="Enter a valid email and you will receive mail for offer and order process"
+              type="email" labelPlacement="floating">
+              <div slot="label">Email</div>
+            </ion-input>
+          </ion-item>
+          <div *ngIf="(registerFormControl?.email?.touched ||  isRegisterSubmit )&& registerFormControl?.email?.invalid">
+             <div class="ion-padding error-padding" *ngIf="registerFormControl?.email?.errors?.pattern">
+              <ion-text color="danger">Invalid email</ion-text>
+            </div>
+          </div>
+        </ion-list>
+
+        <ion-row class="ion-margin-vertical">
+          <ion-col size="12">
+            <ion-button expand="full" color="primary" type="submit" class="ion-text-capitalize">Signup</ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-margin">
+          <ion-col size="12">
+            <ion-label>By Create an account or Logging in, You agree to shopping <strong>Condition of use</strong> and
+              <strong>Privacy
+                Notice</strong></ion-label>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-accordion>
+  </form>
+
+    <form fxLayout="column" fxLayoutGap="1rem" class="sign-form" [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+      <ion-accordion toggleIcon="caret-down-circle-outline" toggleIconSlot="start" value="signin">
+        <ion-item slot="header">
+          <ion-label> <strong>Sign in</strong> Already a Customer?</ion-label>
+        </ion-item>
+
+        <div class="ion-padding" slot="content">
+          <ion-list>
+            <!-- username -->
+            <ion-item>
+              <ion-input labelPlacement="floating" formControlName="usernameOrMobile">
+                <div slot="label">Username or Mobile <ion-text color="danger">*</ion-text></div>
+              </ion-input>
+            </ion-item>
+            <div *ngIf="(loginFormControl?.usernameOrMobile?.touched ||  isLoginSubmit )&& loginFormControl?.usernameOrMobile?.invalid">
+              <div class="ion-padding error-padding" *ngIf="loginFormControl?.usernameOrMobile?.errors?.required">
+                <ion-text color="danger">Username is required.</ion-text>
+              </div>
+            </div>
+            <!-- password -->
+            <ion-item>
+              <ion-input type="password" labelPlacement="floating" formControlName="password">
+                <div slot="label">Password <ion-text color="danger">*</ion-text></div>
+              </ion-input>
+            </ion-item>
+            <div *ngIf="(loginFormControl?.password?.touched || isLoginSubmit) && loginFormControl?.password?.invalid">
+              <div class="ion-padding error-padding" *ngIf="loginFormControl?.password?.errors?.required">
+                <ion-text color="danger">Password is required.</ion-text>
+              </div>
+            </div>
+          </ion-list>
+
+          <ion-row class="ion-margin-vertical">
+            <ion-col size="12">
+              <ion-button expand="full" color="primary" type="submit" class="ion-text-capitalize">SignIn</ion-button>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="ion-margin">
+            <ion-col size="12">
+              <ion-label>By Sign in, You agree to shopping <strong>Condition of use</strong> and <strong>Privacy
+                  Notice</strong></ion-label>
+            </ion-col>
+          </ion-row>
+        </div>
+
+      </ion-accordion>
+    </form>
+  </ion-accordion-group>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons size="small" fill="clear" slot="start">
+      Condition of Use
+    </ion-buttons>
+    <ion-buttons size="small" fill="clear" slot="end">
+      Privacy Notice
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

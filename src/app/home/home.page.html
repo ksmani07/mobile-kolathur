@@ -1,0 +1,14 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary" >
+    <ion-buttons (click)="onBack()" *ngIf="isEnableBack" slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+    </ion-buttons>
+    <ion-title >
+        Shopping
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">  
+  <app-address-toolbar (openModel)="onOpenModel($event)"></app-address-toolbar> 
+ <router-outlet></router-outlet> 
+</ion-content>

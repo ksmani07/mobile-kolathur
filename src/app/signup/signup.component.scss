@@ -1,0 +1,23 @@
+ion-accordion.accordion-collapsing ion-item[slot='header'],
+ion-accordion.accordion-collapsed ion-item[slot='header'] {
+  --background: var(--ion-color-light);
+  --color: var(--ion-color-light-contrast);
+}
+
+ion-accordion.accordion-expanding ion-item[slot='header'],
+ion-accordion.accordion-expanded ion-item[slot='header'] {
+  --background: var(--ion-color-primary) !important;
+  color: var(--ion-color-primary-contrast) !important;
+}
+
+
+ion-accordion.accordion-expanding div[slot='content'],
+ion-accordion.accordion-expanded div[slot='content'] {
+  border: 1px solid;
+  border-color: rgba(var(--ion-color-primary-rgb), 0.25);
+}
+
+ion-item::part(native) {
+      padding-right: 0;
+
+  }

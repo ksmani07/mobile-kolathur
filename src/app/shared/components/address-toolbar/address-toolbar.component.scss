@@ -1,0 +1,12 @@
+
+.address-row{
+    padding: 0.5rem 1rem;
+    color: var(--ion-color-primary-contrast);
+    .add-toolbar{
+        align-items: center;
+        display: flex;
+        ion-icon{
+            font-size: 1.5rem;
+        }
+    }
+}

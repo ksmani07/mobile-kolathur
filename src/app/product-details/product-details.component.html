@@ -1,0 +1,80 @@
+<ion-row>
+  <ion-col size="12">
+    <img [src]="selectedProductType.thumbnail"
+      (error)="selectedProductType.thumbnail = 'https://ionicframework.com/docs/img/demos/card-media.png'" />
+  </ion-col>
+  <ion-col size="12">
+    <ion-row>
+      <strong>{{selectedProductType.name}}</strong>
+    </ion-row>
+    <ion-row>
+      <div [innerHTML]="selectedProductType.description">
+
+      </div>
+    </ion-row>
+    <ion-row>
+      <div>
+        <ion-icon color="primary" *ngFor="let item of list;let i = index"
+          [name]="condition <= i? 'star-outline' :'star' ">
+        </ion-icon>
+      </div>
+    </ion-row>
+    <ion-row>
+      <b>{{selectedProductType.salePrice | currency }}</b> <span class="ion-margin-start">M.R.P <span
+          class="text-line-through">{{selectedProductType.price}}</span> </span>
+    </ion-row>
+
+    <ion-row>
+      <div size="5">
+        <ion-input  [errorText]="invalidQtyMsg" class="quantity-field" [formControl]="quantityFormControl" inputmode="numeric" type="number" min="1" [label]="'Qty:'+ unitName"></ion-input>
+
+      </div>
+      <!-- <ion-select [label]="'Qty:'+ unitName">
+        <ion-select-option [value]="item" *ngFor="let item of numbers">{{item}}</ion-select-option>
+      </ion-select> -->
+    </ion-row>
+
+    <ion-row size="12">
+      <ion-button (click)="addToCart(selectedProductType)" [disabled]="quantityFormControl.invalid" class="full-width ion-margin-top" color="primary">Add to Cart</ion-button>
+    </ion-row>
+
+    <ion-row size="12">
+      <ion-button (click)="clearItem()" [disabled]="quantityFormControl.invalid" class="full-width ion-margin-top" color="secondary">Buy Now</ion-button>
+    </ion-row>
+
+  </ion-col>
+</ion-row>
+
+<!-- types -->
+
+
+<ion-accordion-group [value]="['first']">
+  <ion-accordion value="first">
+    <ion-item slot="header" color="light">
+      <ion-label>{{selectedProductType.name}}</ion-label>
+    </ion-item>
+    <div slot="content">
+      <ion-row class="p-types">
+        
+        <ion-card *ngFor="let item of product.types"  (click)="onChangeType(item)" class="scroll-p ion-border" size="4" [class.active-p]="item.id === selectedProductType.id">
+          <ion-card-content>
+            <ion-col class="d-flex">
+              <img class="thum-w" [src]="selectedProductType.thumbnail"
+                (error)="selectedProductType.thumbnail = 'https://ionicframework.com/docs/img/demos/card-media.png'" />
+            </ion-col>
+            <ion-col class="d-flex list-d" size="12">
+              <ion-row class="ion-margin-bottom">
+                <strong class="sub-title">{{item.name}}</strong>
+              </ion-row>
+              <ion-row>
+                <b>{{item.salePrice | currency }}</b>
+              </ion-row>          
+            </ion-col>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-row>
+    </div>
+  </ion-accordion>
+</ion-accordion-group>
+

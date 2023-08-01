@@ -1,0 +1,33 @@
+
+<!-- header slider -->
+<!-- //https://ionicacademy.com/swiper-ionic-7-ion-slides/ -->
+<swiper-container [slidesPerView]="3" [loop]="true">
+  <swiper-slide>
+    <img src="../../assets/images/sand.png" alt="sand" />
+    <span> Sand</span>
+  </swiper-slide>
+  <swiper-slide>
+     <img src="../../assets/images/aggregate.jpeg" alt="aggregate" />
+    <span> Aggregate</span>
+  </swiper-slide>
+  <swiper-slide>
+    <img src="../../assets/images/brick.jpg" alt="brick" />
+    <span> Bricks</span>
+  </swiper-slide>
+  <swiper-slide>Item 4</swiper-slide>
+  <swiper-slide>item 5</swiper-slide>
+</swiper-container>  
+<!-- add slider -->
+<swiper-container [pagination]="true" [autoplay]="true" class="add-slide"  [slidesPerView]="1" [loop]="true">
+  <swiper-slide *ngFor="let item of images">
+    <img [src]="item" alt=""  />
+  </swiper-slide>
+</swiper-container>
+
+<div class="bg-tint ion-padding">
+  <h2 class="header-primary">Top rated products</h2>
+</div>
+
+<div class="ion-padding categories-main">
+  <app-categories class="categories-home" (onCategoryEmit)="onCategoryEmit($event)"></app-categories>
+</div>
