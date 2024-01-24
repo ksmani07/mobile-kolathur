@@ -20,8 +20,7 @@ export class StorageService {
   }
   
   public  async get(key:string){
-   let value = await this._storage?.get(key);
-   return value;
+      return await this._storage?.get(key);
   }
 
   public async  remove(key:string){

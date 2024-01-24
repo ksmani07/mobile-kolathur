@@ -10,8 +10,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
-  styleUrls: ['tabs.page.scss'],
-  providers:[CommonService, StorageService]
+  styleUrls: ['tabs.page.scss']
 })
 export class TabsPage implements OnInit , AfterViewInit, OnDestroy {
   @ViewChild('tabs') tabs: IonTabs;
@@ -23,9 +22,9 @@ export class TabsPage implements OnInit , AfterViewInit, OnDestroy {
   constructor(
     private platform: Platform, 
     @Optional() private routerOutlet: IonRouterOutlet,
-    private storageSerive:StorageService,
-    private commonService:CommonService,
-    private router:Router) {}
+    private router:Router,private commonService:CommonService) {
+      console.log(commonService?.getNewCart$)
+    }
 
 
 ngOnInit(): void {
@@ -34,7 +33,19 @@ ngOnInit(): void {
       App.exitApp();
     }
   });
-
+  this.commonService?.getNewCart$.subscribe({
+    next: (val)=>{
+      console.log('getCartItem val', val)
+      if(val){
+        //this.setCartQuantity(); 
+      }
+    },
+    error: (err) => {
+      console.log('err', err)
+    },
+    complete: () => console.log('Complete')
+  }
+  )
 }
 
 
@@ -43,7 +54,7 @@ ngAfterViewInit(): void {}
 
 
 ngOnDestroy(): void {
-    this.unSubscription.unsubscribe();
+    this.unSubscription?.unsubscribe();
 }
 
 

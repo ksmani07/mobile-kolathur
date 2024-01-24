@@ -30,7 +30,7 @@
     "@ionic/storage-angular": "^4.0.0",
     "ionicons": "^7.0.0",
     "rxjs": "~7.8.0",
-    "shoping-api": "^0.0.2",
+    "shopping-api": "file:../../angular/shopping-service-client/outdir/dist/shopping-api-0.0.1.tgz",
     "swiper": "^10.0.4",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"

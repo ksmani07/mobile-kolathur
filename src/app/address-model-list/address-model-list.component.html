@@ -1,20 +1,40 @@
 <ion-header></ion-header>
-<ion-content class="ion-padding">
+<ion-content class="ion-padding" >
   <ion-row class="ion-justify-content-center">
     <ion-col  class="ion-align-self-center">
       <strong> Choose your location </strong>      
-    </ion-col>
-   
+    </ion-col>   
   </ion-row>
   <ion-row class="ion-justify-content-center">
     <ion-col class="ion-align-self-center">
       Select a delivery location to see product availability and delivery options
     </ion-col>
   </ion-row>
-  <ion-row>
+  <ion-row *ngIf="!profile">
     <ion-col col="12">
         <ion-button color="primary" (click)="signIn()" class="ion-text-capitalize">Sign in to see your address</ion-button>
     </ion-col>
   </ion-row>
   
+  <ion-row *ngIf="profile">
+    <ion-col col="12">
+      <ion-col  class="no-p-margin" *ngIf="profile?.addresses?.length">
+          <swiper-container [pagination]="true" [autoplay]="true" class="add-slide"  [slidesPerView]="3" [loop]="true">
+            <swiper-slide (click)="onOpenAddress(address)" *ngFor="let address of profile.addresses" class="b-box box-center">
+              <p>{{address.address}}</p>
+              <p>{{address.street}}</p>
+              <p>{{address.city}}</p>
+              <p>{{address.state}}</p>
+              <p>{{address.zipcode}}</p> 
+              <ion-chip>Default</ion-chip>
+            </swiper-slide>
+            <swiper-slide class="b-box box-center" fxLayout="row center" >
+              Add an Address 
+            </swiper-slide>
+          </swiper-container>   
+      </ion-col>
+    </ion-col>
+  </ion-row>
+
 </ion-content>
+

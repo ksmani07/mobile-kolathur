@@ -42,3 +42,21 @@
   width: 100%;
 }
 
+.b-box{
+  border: 1px solid #cccc;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+}
+.box-center{
+  height: auto;
+  text-align: center;
+}
+
+.row-borders{
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-color: var(--ion-color-medium-tint);
+}
+.app-margin-end{
+  margin-right: 10px;
+}

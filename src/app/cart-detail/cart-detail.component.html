@@ -1,0 +1,66 @@
+<ion-header collapse="condense">
+  <app-address-toolbar (openModel)="onOpenModel($event)"></app-address-toolbar>
+</ion-header>
+
+<ion-grid>
+  <ion-row *ngIf="carItems.length">
+    <ion-col>
+      <h4>Subtotal</h4>
+    </ion-col>
+    <ion-col>
+      <h4>{{ subTotal | currency }}</h4>
+    </ion-col>
+  </ion-row>
+  <ion-row class="proceed-sec" *ngIf="carItems.length">
+    <ion-col>
+      <ion-button (click)="proceedCart()" class="full-width" color="primary">Proceed to Buy ( {{carItems.length ? carItems.length : ""}} item)</ion-button>
+
+    </ion-col>
+  </ion-row>
+
+  <ion-col>
+    <ion-card *ngFor="let item of carItems;let i=index">
+      <ion-card-content>
+        <ion-grid *ngIf="item.product as productItem">
+          <ion-row>
+            <ion-col size="4">
+              <img [src]="category.thumbnail"
+                (error)="category.thumbnail = 'https://ionicframework.com/docs/img/demos/card-media.png'" />
+            </ion-col>
+            <ion-col size="8">
+              <strong>{{productItem.name}}</strong>
+              <div>
+                <ion-icon color="primary" *ngFor="let item of list;let i = index"
+                  [name]="condition <= i? 'star-outline' :'star' ">
+                </ion-icon>
+              </div>
+              <div>
+                <b>{{productItem.salePrice | currency }}</b> <span class="ion-margin-start">M.R.P <span
+                    class="text-line-through">{{productItem.price}}</span> </span>
+              </div>
+            </ion-col> 
+          </ion-row>
+          <ion-row>
+            <ion-col size="4" class="flex-cen">
+              <ion-item class="cart-input ion-no-padding" *ngIf="productItem.minQuantity as minqty">
+                <button clear item-left *ngIf=" minqty >= item.quantity" (click)="removeCartItem(item, i)">
+                  <ion-icon name="trash-outline"></ion-icon>  
+                </button>
+                <button clear item-right *ngIf="minqty < item.quantity" (click)="item.quantity = item.quantity - 1; calculateSubTotal()">-</button>
+
+                <ion-input type="number" [value]="item.quantity"></ion-input>
+                <button clear item-right (click)="item.quantity = item.quantity + 1;calculateSubTotal()">+</button>
+              </ion-item>
+            </ion-col>
+            <ion-col size="auto">
+              <ion-button color="light" (click)="removeCartItem(item,i)">Delete</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+  </ion-col>
+</ion-grid>
+
+<app-explore-container *ngIf="!carItems.length" iconName="cart-outline" name="Your Cart is empty"></app-explore-container>

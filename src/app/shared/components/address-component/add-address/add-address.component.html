@@ -1,0 +1,97 @@
+
+<div class="ion-padding">
+  <h2 class="ion-no-margin">Add a new Address</h2>
+</div>
+<div>
+  <form fxLayout="column" fxLayoutGap="1rem" [formGroup]="addressForm" (ngSubmit)="formSubmit()">
+  <ion-list>
+    <ion-item>
+      <ion-input formControlName="name" labelPlacement="floating">
+        <div slot="label">Full Name (First and Last name)<ion-text color="danger">*</ion-text></div>
+      </ion-input>
+    </ion-item>
+    <div *ngIf="(addressFormControl?.name?.touched ||  isAddressSubmit )&& addressFormControl?.name?.invalid">
+      <div class="ion-padding error-padding" *ngIf="addressFormControl?.name?.errors?.required">
+        <ion-text color="danger">Full name is required.</ion-text>
+      </div>
+    </div>
+    <ion-item>
+      <ion-input formControlName="phoneNo" type="number" labelPlacement="floating"  >
+        <div slot="label">Mobile number<ion-text color="danger">*</ion-text></div>
+      </ion-input>
+    </ion-item>
+
+    <div *ngIf="(addressFormControl?.phoneNo?.touched ||  isAddressSubmit )&& addressFormControl?.phoneNo?.invalid">
+      <div class="ion-padding error-padding" *ngIf="addressFormControl?.phoneNo?.errors?.required">
+        <ion-text color="danger">Mobile number is required.</ion-text>
+      </div>
+    </div>
+
+    <ion-item>
+      <ion-input formControlName="address" type="text" labelPlacement="floating">
+        <div slot="label">Flat, House no., Building, Company, Apartment <ion-text color="danger">*</ion-text></div>
+      </ion-input>
+    </ion-item>
+
+    <div *ngIf="(addressFormControl?.address?.touched ||  isAddressSubmit )&& addressFormControl?.address?.invalid">
+      <div class="ion-padding error-padding" *ngIf="addressFormControl?.address?.errors?.required">
+        <ion-text color="danger">Address is required.</ion-text>
+      </div>
+    </div>
+
+    <ion-item>
+      <ion-input formControlName="street" type="text" labelPlacement="floating">
+        <div slot="label">Area, Street, Sector, Village<ion-text color="danger">*</ion-text></div>
+      </ion-input>      
+    </ion-item>
+
+    <div *ngIf="(addressFormControl?.street?.touched ||  isAddressSubmit )&& addressFormControl?.address?.invalid">
+      <div class="ion-padding error-padding" *ngIf="addressFormControl?.street?.errors?.required">
+        <ion-text color="danger">Street is required.</ion-text>
+      </div>
+    </div>
+
+    <ion-item>
+      <ion-input formControlName="zipcode" type="text" labelPlacement="floating">
+        <div slot="label">Pincode<ion-text color="danger">*</ion-text></div>
+      </ion-input>
+    </ion-item>
+
+
+    <div *ngIf="(addressFormControl?.zipcode?.touched ||  isAddressSubmit )&& addressFormControl?.address?.invalid">
+      <div class="ion-padding error-padding" *ngIf="addressFormControl?.zipcode?.errors?.required">
+        <ion-text color="danger">Pincode is required.</ion-text>
+      </div>
+    </div>
+
+    <ion-item>
+      <ion-input formControlName="city" type="text" labelPlacement="floating">
+        <div slot="label">Town/City<ion-text color="danger">*</ion-text></div>
+      </ion-input>
+    </ion-item>
+
+    <div *ngIf="(addressFormControl?.city?.touched ||  isAddressSubmit )&& addressFormControl?.address?.invalid">
+      <div class="ion-padding error-padding" *ngIf="addressFormControl?.city?.errors?.required">
+        <ion-text color="danger">City is required.</ion-text>
+      </div>
+    </div>
+
+    <ion-item>
+        <ion-select formControlName="state" [compareWith]="stateCompare" label="State" placeholder="State">
+          <ion-select-option [value]="item" *ngFor="let item of stateList">{{item.value}}</ion-select-option>
+        </ion-select>
+    </ion-item>
+
+    <div *ngIf="(addressFormControl?.state?.touched ||  isAddressSubmit )&& addressFormControl?.address?.invalid">
+      <div class="ion-padding error-padding" *ngIf="addressFormControl?.state?.errors?.required">
+        <ion-text color="danger">State is required.</ion-text>
+      </div>
+    </div>
+  </ion-list>
+  <ion-row class="ion-margin-vertical">
+    <ion-col size="12">
+      <ion-button expand="full" color="primary" type="submit" class="ion-text-capitalize">Add address</ion-button>
+    </ion-col>
+  </ion-row>
+</form>
+</div>

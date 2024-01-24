@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Category, Product, ProductType } from 'shoping-api';
+import { Category, Product, ProductType } from 'shopping-api';
 
 @Component({
   selector: 'app-list-products',

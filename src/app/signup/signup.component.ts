@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
-import { Singin, UserService } from 'shoping-api';
+import { ProfileService, Singin, UserService } from 'shopping-api';
+import { environment } from 'src/environments/environment';
+import { StorageService } from '../shared/services/storage.service';
+import { Location } from '@angular/common';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-signup',
@@ -16,11 +20,15 @@ export class SignupComponent  implements OnInit {
   constructor(
     private fb:FormBuilder, 
     private userService:UserService,
-    private alertController: AlertController) { }
+    private alertController: AlertController,
+    private storageServive:StorageService,
+    private profileservice:ProfileService,
+    private location:Location) { }
 
   ngOnInit() {
     this.initializeLogin();
     this.initializeRegister();
+   console.log(this.location)
   }
   initializeLogin() {
     this.loginForm = this.fb.group({
@@ -70,12 +78,20 @@ get registerFormControl() {
 loginService(param:Singin){ 
   this.userService.login(param).subscribe((res)=>{
     if(res.accessToken){
-      localStorage.setItem('shoppingtoken', res.accessToken)
+      localStorage.setItem('shoppingtoken', res.accessToken);
+      this.storageServive.set(environment.signIn, res.accessToken);
       //this.apiConfiguration.accessToken  = res.accessToken;
+      console.log('location',this.location)
+
+      this.loadProfile();
+
+      this.location.back();
       //this.route.navigate(['dashboard']);     
     }
   },(error)=>{
     this.openSnackBar('Please check your login credentials!!!', "Error");
+    this.storageServive.remove(environment.signIn);
+    localStorage.removeItem('shoppingtoken');
   })
 }
 
@@ -89,4 +105,13 @@ async openSnackBar(message:string, tyep:string) {
 
   await alert.present();
 }
+  loadProfile(){
+    this.profileservice.getProfile().subscribe(profile=>{
+      this.storageServive.set(environment.profile, profile);
+    });
+  }
+
+  goBack(){
+    this.location.back();
+  }
 }

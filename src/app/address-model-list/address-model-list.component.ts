@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { StorageService } from '../shared/services/storage.service';
+import { Profile, Address } from 'shopping-api';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-address-model-list',
@@ -7,12 +10,22 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./address-model-list.component.scss'],
 })
 export class AddressModelListComponent  implements OnInit {
+  
+  profile:Profile;
 
-  constructor(private modalCtrl: ModalController) { }
+  constructor(private modalCtrl: ModalController, private storageServe:StorageService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  console.log("address")
+    this.storageServe.get(environment.profile).then(pr=>{
+      this.profile = pr;
+    })
+  }
   signIn() {
     return this.modalCtrl.dismiss(null, 'signIn');
+  }
+  onOpenAddress(address:Address){
+    console.log('address', address);
   }
 
 }

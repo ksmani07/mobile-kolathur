@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { register } from 'swiper/element/bundle';
 import {Swiper} from 'swiper';
-import { Category } from 'shoping-api';
+import { Category } from 'shopping-api';
 import { Router } from '@angular/router';
 register();
 @Component({

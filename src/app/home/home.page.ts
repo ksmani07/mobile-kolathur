@@ -35,7 +35,7 @@ export class homePage implements OnInit, OnDestroy {
 
   
   ionViewDidLeave() {
-    this.unSubscription?.unsubscribe();
+    //this.unSubscription?.unsubscribe();
     console.log('==========Home=====ionViewDidLeave==============')
   }
 
@@ -69,7 +69,7 @@ export class homePage implements OnInit, OnDestroy {
     // console.log('role', role)
   }
   ngOnDestroy(): void {
-      this.unSubscription.unsubscribe();
+      //this.unSubscription?.unsubscribe();
   }
 }
 

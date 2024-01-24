@@ -8,8 +8,6 @@ import { TabsPageRoutingModule } from './tabs-routing.module';
 import { TabsPage } from './tabs.page';
 import { SharedModule } from '../shared/shared.module';
 import { TabBarComponent } from './tab-bar/tab-bar.component';
-import { CommonService } from '../shared/services/common.service';
-import { StorageService } from '../shared/services/storage.service';
 
 @NgModule({
   imports: [
@@ -19,7 +17,7 @@ import { StorageService } from '../shared/services/storage.service';
     FormsModule,
     TabsPageRoutingModule,
   ],
-  declarations: [TabsPage],
-  exports:[],
+  declarations: [TabsPage, TabBarComponent],
+  exports:[SharedModule, TabBarComponent],
 })
 export class TabsPageModule {}

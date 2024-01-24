@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  localCart: "LOCAL_CART"
+  localCart: "LOCAL_CART",
+  signIn: "SIGNIN",
+  profile:"PROFILE"
 };
 
 /*

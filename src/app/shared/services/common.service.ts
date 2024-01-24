@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, of } from 'rxjs';
 import { AddressModelListComponent } from 'src/app/address-model-list/address-model-list.component';
 import { SharedModule } from '../shared.module';
+import { StorageService } from './storage.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -12,11 +14,10 @@ export class CommonService {
   private addedCartItem = new BehaviorSubject<any>(true);
   public readonly getNewCart$:Observable<any> = this.addedCartItem.asObservable();
   constructor(private modalCtrl: ModalController,
-    private router:Router) { }
+    private router:Router, private storage:StorageService) { }
 
 
-  setCartItem(added:boolean){
-    console.log('setCartItem', added)
+  setCartItem(added:any){
     this.addedCartItem.next(added);
   }
 
@@ -31,10 +32,23 @@ export class CommonService {
     const { data, role } = await modal.onWillDismiss();
 
     if (role === 'signIn') {
-      this.router.navigate(['signup']);
+      this.router.navigate(['account/signup']);
     }
     console.log('data', data)
     console.log('role', role)
+  }
+
+  isSignIn():Observable<any>{
+    return of(this.storage.get(environment.signIn));
+  }
+
+  clearNotLoginData() {
+    // Remove token
+    this.storage.remove(environment.profile);
+    this.storage.remove(environment.signIn);
+
+    localStorage.removeItem("shoppingtoken");
+    // Remove Profile
   }
 
 }

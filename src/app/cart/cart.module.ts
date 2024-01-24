@@ -7,6 +7,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { CartPageRoutingModule } from './cart-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { CartDetailComponent } from '../cart-detail/cart-detail.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,9 @@ import { SharedModule } from '../shared/shared.module';
     ExploreContainerComponentModule,
     CartPageRoutingModule
   ],
-  declarations: [CartPage]
+  declarations: [CartPage,CartDetailComponent],
+  exports:[
+    SharedModule
+  ]
 })
 export class CartPageModule {}

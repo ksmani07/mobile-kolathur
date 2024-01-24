@@ -15,7 +15,7 @@ export class TabBarComponent  implements OnInit , OnDestroy{
   constructor(private storageSerive:StorageService,
     private commonService:CommonService,private zone:NgZone) {
 
-
+console.log('TabBarComponent init==========================')
      }
 
   ngOnInit() {
@@ -25,23 +25,20 @@ export class TabBarComponent  implements OnInit , OnDestroy{
       }, 300);
     })  
   }
-  ionViewWillEnter(){
-    // setTimeout(() => {
-    //   this.lodaCartItem();
-    // }, 300);
-  }
-  ionViewDidEnter(){
- 
-  }
+
+
 
   lodaCartItem(){
-    console.log('tab on init')
-    this.unSubscription = this.commonService.getNewCart$.subscribe({
+    
+    this.unSubscription = this.commonService?.getNewCart$.subscribe({
       next: (val)=>{
         console.log('getCartItem val', val)
-        if(val){
+        if(val && val.length){
           this.setCartQuantity(); 
         }
+      },
+      error: (err) => {
+        console.log('err', err)
       },
       complete: () => console.log('Complete')
     }
@@ -52,8 +49,8 @@ export class TabBarComponent  implements OnInit , OnDestroy{
     console.log(environment.localCart)
     this.storageSerive.get(environment.localCart)?.then((val:any)=>{
       if(val){
-        this.cartQuantity = val.map((a
-          :any) => a.quantity).reduce(function(a:number, b:number)
+        this.cartQuantity = val?.map((a
+          :any) => a.quantity)?.reduce(function(a:number, b:number)
         {
           return a + b;
         });

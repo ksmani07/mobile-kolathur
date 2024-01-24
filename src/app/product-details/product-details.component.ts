@@ -1,7 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { expand, min } from 'rxjs';
-import { Category, Product, ProductType } from 'shoping-api';
+import { Category, Product, ProductType } from 'shopping-api';
 import { StorageService } from '../shared/services/storage.service';
 import { environment } from 'src/environments/environment';
 import { CommonService } from '../shared/services/common.service';

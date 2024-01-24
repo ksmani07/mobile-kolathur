@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Category, CategoryService } from 'shoping-api';
+import { Category, CategoryService } from 'shopping-api';
 
 @Component({
   selector: 'app-categories',

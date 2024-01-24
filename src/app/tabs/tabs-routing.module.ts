@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { AuthRedirectGuard } from '../shared/guards/auth-redirect.guard';
 
 const routes: Routes = [
   {
@@ -12,19 +13,20 @@ const routes: Routes = [
         loadChildren: () => import('../home/home.module').then(m => m.homePageModule)
       },
       {
+        //canActivate:[AuthRedirectGuard],
         path: 'account',
-        loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+        loadChildren: () => import('../accounts/account.module').then(m => m.AccountPageModule)
       },
       {
         path: 'cart',
         loadChildren: () => import('../cart/cart.module').then(m => m.CartPageModule)
-      },
-      {
+      }, {
         path: '',
-        redirectTo: '/home',
+        redirectTo: 'home',
         pathMatch: 'full'
       }
-    ]
+    ],
+   
   },
   {
     path: '',
